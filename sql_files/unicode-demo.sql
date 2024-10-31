@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 31, 2024 at 09:46 PM
+-- Generation Time: Oct 31, 2024 at 10:47 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -45,6 +45,29 @@ INSERT INTO `groups` (`id`, `name`, `create_at`, `update_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text,
+  `status` tinyint(4) DEFAULT '0',
+  `create_at` timestamp NOT NULL,
+  `update_at` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `content`, `status`, `create_at`, `update_at`) VALUES
+(1, 'Bài viết 1', 'Nội dung 1', 0, '2024-10-31 15:14:47', '2024-10-31 15:14:47'),
+(2, 'Bài viết 2', 'Nội dung 2', 0, '2024-10-31 15:14:47', '2024-10-31 15:14:47');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -81,6 +104,12 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -95,6 +124,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --

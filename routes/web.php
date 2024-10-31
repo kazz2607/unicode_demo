@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Backend\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,5 +29,14 @@ Route::prefix('admin')->group(function(){
         Route::get('/edit/{id}',[UsersController::class,'edit'])->name('edit');
         Route::get('/update',[UsersController::class,'update'])->name('update');
         Route::get('/delete/{id}',[UsersController::class,'delete'])->name('delete');
+    });
+
+    Route::prefix('posts')->name('posts.')->group(function(){
+        Route::get('/',[PostController::class,'index'])->name('index');
+        Route::get('/create',[PostController::class,'create'])->name('create');
+        Route::get('/store',[PostController::class,'store'])->name('store');
+        Route::get('/edit/{id}',[PostController::class,'edit'])->name('edit');
+        Route::get('/update',[PostController::class,'update'])->name('update');
+        Route::get('/delete/{id}',[PostController::class,'delete'])->name('delete');
     });
 });
