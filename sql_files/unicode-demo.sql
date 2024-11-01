@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 31, 2024 at 10:47 PM
+-- Generation Time: Nov 01, 2024 at 10:41 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -51,19 +51,24 @@ INSERT INTO `groups` (`id`, `name`, `create_at`, `update_at`) VALUES
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `content` text,
+  `content` text NOT NULL,
   `status` tinyint(4) DEFAULT '0',
-  `create_at` timestamp NOT NULL,
-  `update_at` timestamp NOT NULL
+  `create_at` timestamp NULL DEFAULT NULL,
+  `update_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `status`, `create_at`, `update_at`) VALUES
-(1, 'Bài viết 1', 'Nội dung 1', 0, '2024-10-31 15:14:47', '2024-10-31 15:14:47'),
-(2, 'Bài viết 2', 'Nội dung 2', 0, '2024-10-31 15:14:47', '2024-10-31 15:14:47');
+INSERT INTO `posts` (`id`, `title`, `content`, `status`, `create_at`, `update_at`, `deleted_at`) VALUES
+(6, 'Bài viết 2', 'Bài viết 2', 0, NULL, '2024-11-01 08:39:54', '2024-11-01 08:39:54'),
+(8, 'Bài viết 4', 'Bài viết 4', 0, NULL, '2024-11-01 08:39:22', NULL),
+(9, 'Bài viết 1', 'Bài viết 1', 0, NULL, '2024-11-01 08:39:21', NULL),
+(10, 'Bài viết 2', 'Bài viết 2', 0, NULL, NULL, NULL),
+(11, 'Bài viết 3', 'Bài viết 3', 0, NULL, NULL, NULL),
+(12, 'Bài viết 4', 'Bài viết 4', 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -130,7 +135,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

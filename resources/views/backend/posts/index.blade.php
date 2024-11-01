@@ -56,6 +56,7 @@
                     <th scope="col"><a href="#" class="title">{{ __('Date Created') }}</a></th>
                     <th scope="col">{{ __('Edit') }}</th>
                     <th scope="col">{{ __('Delete') }}</th>
+                    <th scope="col" width="15%">{{ __('Restore') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,7 +73,16 @@
                                 <td>{!! $item->status == 0 ? '<button class="btn btn-danger btn-sm">Chưa kích hoạt</button>':'<button class="btn btn-success btn-sm">Kích hoạt</button>' !!}</td>
                                 <td>{{ $item->create_at }}</td>
                                 <td><a class="btn btn-primary btn-sm" href="{{ route('posts.edit', $item->id )}}">{{ __('Edit') }}</a></td>
-                                <td><a onclick="return confirm('Are you sure delete?')" class="btn btn-danger btn-sm" href="{{ route('posts.delete', $item->id )}}">{{ __('Delete') }}</a></td>
+                                <td>
+                                    @if (!$item->trashed())
+                                        <a onclick="return confirm('Are you sure delete?')" class="btn btn-danger btn-sm" href="{{ route('posts.delete', $item->id )}}">{{ __('Delete') }}</a></td>
+                                    @endif
+                                <td>
+                                    @if ($item->trashed())
+                                        <a onclick="return confirm('Are you sure?')" class="btn btn-success btn-sm" href="{{ route('posts.restore', $item->id )}}" class="restore">Restore</a>
+                                        <a onclick="return confirm('Are you sure force delete?')" class="btn btn-warning btn-sm" href="{{ route('posts.force-delete', $item->id )}}" class="force">Force Delete</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @else
