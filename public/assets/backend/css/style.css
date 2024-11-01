@@ -67,3 +67,6 @@ body{
 #app .navbar .dropdown-item{
     font-size: 0.9rem;
 }
+table thead a{
+    text-decoration: none;
+}

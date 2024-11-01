@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    /** Route Users */
     Route::prefix('users')->name('users.')->group(function(){
         Route::get('/',[UsersController::class,'index'])->name('index');
         Route::get('/create',[UsersController::class,'create'])->name('create');
@@ -30,7 +31,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/update',[UsersController::class,'update'])->name('update');
         Route::get('/delete/{id}',[UsersController::class,'delete'])->name('delete');
     });
-
+    /** Route Posts */
     Route::prefix('posts')->name('posts.')->group(function(){
         Route::get('/',[PostController::class,'index'])->name('index');
         Route::get('/create',[PostController::class,'create'])->name('create');
@@ -38,5 +39,6 @@ Route::prefix('admin')->group(function(){
         Route::get('/edit/{id}',[PostController::class,'edit'])->name('edit');
         Route::get('/update',[PostController::class,'update'])->name('update');
         Route::get('/delete/{id}',[PostController::class,'delete'])->name('delete');
+        Route::post('/delete-any',[PostController::class,'handleDeleteAny'])->name('delete-any');
     });
 });

@@ -21,4 +21,14 @@ class PostModel extends Model
      * 
     */
 
+    public $timestamps = true;
+
+    const CREATED_AT = 'create_at';
+    const UPDATED_AT = 'update_at';
+
+    protected $fillable = [
+        'title',
+        'content',
+        'status'
+    ];
 }
