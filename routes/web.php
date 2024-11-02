@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/edit/{id}',[UsersController::class,'edit'])->name('edit');
         Route::get('/update',[UsersController::class,'update'])->name('update');
         Route::get('/delete/{id}',[UsersController::class,'delete'])->name('delete');
+        Route::get('/relation',[UsersController::class,'relations'])->name('relation');
     });
     /** Route Posts */
     Route::prefix('posts')->name('posts.')->group(function(){

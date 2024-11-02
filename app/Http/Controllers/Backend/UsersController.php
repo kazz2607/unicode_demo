@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\UsersModel;
+use App\Models\PhoneModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 
@@ -123,5 +124,19 @@ class UsersController extends Controller
     public function delete($id){
         $this->users->deleteUser($id);
         return redirect()->route('users.index')->with('msg','Xoá thành viên thành công');
+    }
+
+    public function relations(){
+        // $user = UsersModel::find(6)->phone;
+        // $idPhone = $user->id;
+        // $phoneNumber = $user->phone;
+        // echo 'ID phone : '.$idPhone.'</br>';
+        // echo 'Phone Number : '.$phoneNumber.'</br>';
+
+        $user = PhoneModel::where('phone','0907701772')->first()->user;
+        $fullName = $user->name;
+        $email = $user->email;
+        echo 'Tên : '.$fullName.'</br>';
+        echo 'Email : '.$email.'</br>';
     }
 }

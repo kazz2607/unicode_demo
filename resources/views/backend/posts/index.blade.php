@@ -66,7 +66,10 @@
                     @if (count($list) > 0)
                         @foreach ($list as $key => $item)
                             <tr>
-                                <th scope="row"><input type="checkbox" name="delete[]" value="{{ $item->id }}"></th>
+                                <th scope="row">
+                                    @if (!$item->trashed())
+                                        <input type="checkbox" name="delete[]" value="{{ $item->id }}"></th>
+                                    @endif
                                 <th scope="row">{{ $key+1 }}</th>
                                 <td>{{ $item->title }}</td>
                                 <td>Category</td>
@@ -99,4 +102,17 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('js')
+{{-- <script type="text/javascript">
+    $(document).ready(function() {
+        $('.checkAll').on('click', function() {
+            var checkAll = this.checked;
+            $('input[type=checkbox]').each(function() {
+                this.checked = checkAll;
+            });
+        });
+    });
+</script> --}}
 @endsection

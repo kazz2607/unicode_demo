@@ -8,6 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('assets/backend/css/style.css') }}" rel="stylesheet">
     <title>{{ $meta['title'] }} - {{ env('APP_NAME') }}</title>
+    @yield('css')
 </head>
 <body id="app">
     <section class="header">
@@ -32,7 +33,7 @@
     <section class="footer">
         @include('backend.layouts.footer')
     </section>
-
+    @yield('js')
     <script src="{{ asset('assets/backend/js/bootstrap.bundle.min.js ')}}"></script>
     <script src="{{ asset('assets/backend/js/custom.js ')}}"></script>
 </body>

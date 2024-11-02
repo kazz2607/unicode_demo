@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\PhoneModel;
 
 class UsersModel extends Model
 {
@@ -69,4 +70,11 @@ class UsersModel extends Model
         return $users;
     }
 
+    public function phone(){
+        return $this->hasOne(
+            PhoneModel::class,
+            'user_id',
+            'id'
+        );
+    }
 }

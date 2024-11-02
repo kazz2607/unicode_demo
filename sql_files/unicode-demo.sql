@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 01, 2024 at 10:41 PM
+-- Generation Time: Nov 02, 2024 at 10:26 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -45,6 +45,26 @@ INSERT INTO `groups` (`id`, `name`, `create_at`, `update_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `phones`
+--
+
+CREATE TABLE `phones` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `phone` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `phones`
+--
+
+INSERT INTO `phones` (`id`, `user_id`, `phone`) VALUES
+(1, 6, '0907701772'),
+(2, 5, '0906765062');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `posts`
 --
 
@@ -63,7 +83,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `status`, `create_at`, `update_at`, `deleted_at`) VALUES
-(6, 'Bài viết 2', 'Bài viết 2', 0, NULL, '2024-11-01 08:39:54', '2024-11-01 08:39:54'),
+(6, 'Bài viết 2', 'Bài viết 2', 0, NULL, '2024-11-02 06:23:44', '2024-11-02 06:23:44'),
 (8, 'Bài viết 4', 'Bài viết 4', 0, NULL, '2024-11-01 08:39:22', NULL),
 (9, 'Bài viết 1', 'Bài viết 1', 0, NULL, '2024-11-01 08:39:21', NULL),
 (10, 'Bài viết 2', 'Bài viết 2', 0, NULL, NULL, NULL),
@@ -109,6 +129,13 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `phones`
+--
+ALTER TABLE `phones`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -132,6 +159,12 @@ ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `phones`
+--
+ALTER TABLE `phones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
@@ -146,6 +179,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `phones`
+--
+ALTER TABLE `phones`
+  ADD CONSTRAINT `phones_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `users`
