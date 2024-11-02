@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\UsersModel;
 use App\Models\PhoneModel;
+use App\Models\GroupsModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\UsersRequest;
 
@@ -133,10 +134,22 @@ class UsersController extends Controller
         // echo 'ID phone : '.$idPhone.'</br>';
         // echo 'Phone Number : '.$phoneNumber.'</br>';
 
-        $user = PhoneModel::where('phone','0907701772')->first()->user;
-        $fullName = $user->name;
-        $email = $user->email;
-        echo 'Tên : '.$fullName.'</br>';
-        echo 'Email : '.$email.'</br>';
+        // $user = PhoneModel::where('phone','0907701772')->first()->user;
+        // $fullName = $user->name;
+        // $email = $user->email;
+        // echo 'Tên : '.$fullName.'</br>';
+        // echo 'Email : '.$email.'</br>';
+
+        //$user = GroupsModel::find(1)->users;
+        // $user = GroupsModel::find(1)->users()->where('email','info@webvina.net')->get();
+        // if ($user->count()>0){
+        //     foreach ($user as $item){
+        //         Echo $item->name.'</br>';
+        //     }
+        // }
+
+        $group = UsersModel::find(6)->group;
+        $groupName =  $group->name;
+        echo 'Tên nhóm của user : '.$groupName;
     }
 }
