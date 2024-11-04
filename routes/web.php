@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\PostController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Mechanics;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,4 +46,10 @@ Route::prefix('admin')->group(function(){
         Route::get('/restore/{id}',[PostController::class,'restore'])->name('restore');
         Route::get('/force-delete/{id}',[PostController::class,'forceDelete'])->name('force-delete');
     });
+});
+
+Route::get('/owner', function () {
+    $owner = Mechanics::find(1)->carOwner;
+    dd($owner);
+    //return $owner;
 });
