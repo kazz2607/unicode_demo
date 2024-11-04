@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 02, 2024 at 10:26 PM
+-- Generation Time: Nov 04, 2024 at 09:51 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `unicode-demo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cars`
+--
+
+CREATE TABLE `cars` (
+  `id` int(11) NOT NULL,
+  `model` varchar(255) DEFAULT NULL,
+  `mechanic_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cars`
+--
+
+INSERT INTO `cars` (`id`, `model`, `mechanic_id`) VALUES
+(1, 'Model 1', 1),
+(2, 'Model 2', 2);
 
 -- --------------------------------------------------------
 
@@ -41,6 +61,45 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `create_at`, `update_at`) VALUES
 (1, 'Administrator', NULL, NULL),
 (2, 'Manager', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mechanics`
+--
+
+CREATE TABLE `mechanics` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `mechanics`
+--
+
+INSERT INTO `mechanics` (`id`, `name`) VALUES
+(1, 'Phụ tùng 1'),
+(2, 'Phụ tùng 2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `owners`
+--
+
+CREATE TABLE `owners` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `car_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `owners`
+--
+
+INSERT INTO `owners` (`id`, `name`, `car_id`) VALUES
+(1, 'Nguyễn Tuấn', 1),
+(2, 'Hoàng Nam', 2);
 
 -- --------------------------------------------------------
 
@@ -123,10 +182,30 @@ INSERT INTO `users` (`id`, `name`, `email`, `group_id`, `status`, `trash`, `crea
 --
 
 --
+-- Indexes for table `cars`
+--
+ALTER TABLE `cars`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mechanic_id` (`mechanic_id`);
+
+--
 -- Indexes for table `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mechanics`
+--
+ALTER TABLE `mechanics`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `owners`
+--
+ALTER TABLE `owners`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `car_id` (`car_id`);
 
 --
 -- Indexes for table `phones`
@@ -153,9 +232,27 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `mechanics`
+--
+ALTER TABLE `mechanics`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `owners`
+--
+ALTER TABLE `owners`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -179,6 +276,18 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cars`
+--
+ALTER TABLE `cars`
+  ADD CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`mechanic_id`) REFERENCES `mechanics` (`id`);
+
+--
+-- Constraints for table `owners`
+--
+ALTER TABLE `owners`
+  ADD CONSTRAINT `owners_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`);
 
 --
 -- Constraints for table `phones`
