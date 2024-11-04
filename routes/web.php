@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\PostController;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Mechanics;
+use App\Models\Country;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,5 +52,9 @@ Route::prefix('admin')->group(function(){
 Route::get('/owner', function () {
     $owner = Mechanics::find(1)->carOwner;
     dd($owner);
-    //return $owner;
+});
+
+Route::get('/country', function () {
+    $posts = Country::find(2)->posts;
+    dd($posts);
 });
