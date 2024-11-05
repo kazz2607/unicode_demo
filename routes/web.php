@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\Categories;
 use App\Models\PostModel;
 use App\Models\UsersModel;
+use App\Models\GroupsModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,36 +52,66 @@ Route::prefix('admin')->group(function(){
         Route::get('/force-delete/{id}',[PostController::class,'forceDelete'])->name('force-delete');
     });
 });
+Route::prefix('demo')->group(function(){
+    Route::get('/owner', function () {
+        $owner = Mechanics::find(1)->carOwner;
+        dd($owner);
+    });
+    
+    Route::get('/country', function () {
+        $posts = Country::find(2)->posts;
+        dd($posts);
+    });
+    
+    Route::get('/posts', function () {
+        $categories = PostModel::find(6)->categories;
+        dd($categories);
+    });
+    
+    Route::get('/categories', function () {
+        //$posts = Categories::find(1)->posts;
+        $categories = PostModel::find(6)->categories;
+        foreach ( $categories as $cartegory){
+            // if (!empty($cartegory->pivot->create_at)){
+            //     echo $cartegory->pivot->create_at.'</br>';
+            // };
+            //dd($cartegory->pivot);
+            echo $cartegory->pivot->post_id.' - ';
+            echo $cartegory->pivot->status.'</br>';
+        };
+    });
+    
+    Route::get('/phone', function () {
+        $phone = UsersModel::find(7)->phone;
+        dd($phone);
+    });
+    
+    Route::get('/users', function () {
+        $users = GroupsModel::find(1);
+        $users = $users->users()->where('id', '>', 5)->get();
+        dd($users);
+    });
+    
+    Route::get('/group', function () {
+        // $group = UsersModel::find(5)->group;
+        // dd($group);
+    
+        $users = UsersModel::all();
+        foreach ($users as $user){
+            if(!empty($user->group->name)){
+                $groupName = $user->group->name;
+                $userName = $user->name;
+                echo $userName.' - '.$groupName.'</br>';
+            }else{
+                $userName = $user->name;
+                echo $userName.' - Không có nhóm </br>';
+            }
+        }
+    });
 
-Route::get('/owner', function () {
-    $owner = Mechanics::find(1)->carOwner;
-    dd($owner);
-});
+    Route::get('/comments', function () {
+       $post = PostModel::has('comments','>=', 2)->get();
+       dd($post);
+    });
 
-Route::get('/country', function () {
-    $posts = Country::find(2)->posts;
-    dd($posts);
-});
-
-Route::get('/posts', function () {
-    $categories = PostModel::find(6)->categories;
-    dd($categories);
-});
-
-Route::get('/categories', function () {
-    //$posts = Categories::find(1)->posts;
-    $categories = PostModel::find(6)->categories;
-    foreach ( $categories as $cartegory){
-        // if (!empty($cartegory->pivot->create_at)){
-        //     echo $cartegory->pivot->create_at.'</br>';
-        // };
-        //dd($cartegory->pivot);
-        echo $cartegory->pivot->post_id.' - ';
-        echo $cartegory->pivot->status.'</br>';
-    };
-});
-
-Route::get('/phone', function () {
-    $phone = UsersModel::find(7)->phone;
-    dd($phone);
 });

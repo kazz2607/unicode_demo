@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 05, 2024 at 08:34 PM
+-- Generation Time: Nov 05, 2024 at 10:10 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -86,6 +86,28 @@ INSERT INTO `categories_posts` (`id`, `post_id`, `category_id`, `create_at`, `st
 (2, 6, 2, '2024-11-11 17:00:00', 0),
 (3, 8, 1, '2024-11-11 12:56:25', 0),
 (4, 8, 2, '2024-11-10 17:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `content` text,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `name`, `content`, `post_id`) VALUES
+(1, 'Nguyễn Tuấn', 'Comments 1', 6),
+(2, 'Hoàng Nam', 'Comments 2', 6),
+(3, 'Văn A', 'Comments 3', 8);
 
 -- --------------------------------------------------------
 
@@ -241,7 +263,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `group_id`, `status`, `trash`, `coun
 (3, 'Văn D', 'info@webvina.net', 1, 1, 0, 1, '2024-10-29 11:38:31', '2024-10-31 12:37:26'),
 (4, 'Văn C', 'nguyentuanltc@gmail.com', 2, 1, 0, 2, '2024-10-30 01:46:59', '2024-10-30 13:13:32'),
 (5, 'Văn B', 'nguyentuan@gmail.com', 1, 0, 0, 1, '2024-10-30 03:17:51', '2024-10-30 13:13:24'),
-(6, 'Văn A - Update', '22@webvina.net', 2, 0, 0, 1, '2024-10-30 03:38:08', '2024-10-31 14:02:57'),
+(6, 'Văn A - Update', '22@webvina.net', 1, 0, 0, 1, '2024-10-30 03:38:08', '2024-10-31 14:02:57'),
 (7, 'Văn E', 'nguyentuan2607@gmail.com', 1, 1, 0, 1, '2024-10-30 03:52:00', '2024-10-31 14:02:41');
 
 --
@@ -267,6 +289,13 @@ ALTER TABLE `categories`
 ALTER TABLE `categories_posts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`),
+  ADD KEY `post_id` (`post_id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `post_id` (`post_id`);
 
 --
@@ -339,6 +368,12 @@ ALTER TABLE `categories_posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
@@ -396,6 +431,12 @@ ALTER TABLE `cars`
 ALTER TABLE `categories_posts`
   ADD CONSTRAINT `categories_posts_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `categories_posts_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
 
 --
 -- Constraints for table `owners`

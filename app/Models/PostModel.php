@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Categories;
+use App\Models\Comments;
 
 class PostModel extends Model
 {
@@ -44,5 +45,13 @@ class PostModel extends Model
         )
         ->withPivot('create_at','status')
         ->wherePivot('status', 1);
+    }
+
+    public function comments(){
+        return $this->hasMany(
+            Comments::class,
+            'post_id',
+            'id',
+        );
     }
 }
