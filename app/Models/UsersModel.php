@@ -76,7 +76,13 @@ class UsersModel extends Model
             PhoneModel::class,
             'user_id',
             'id'
-        );
+        )
+        // ->withDefault([
+        //     'phone' => '0123456789'
+        // ]);
+        ->withDefault(function($phone){
+            $phone->phone = 'Không xác định';
+        });
     }
 
     public function group(){

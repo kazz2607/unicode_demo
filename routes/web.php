@@ -9,6 +9,7 @@ use App\Models\Mechanics;
 use App\Models\Country;
 use App\Models\Categories;
 use App\Models\PostModel;
+use App\Models\UsersModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,4 +78,9 @@ Route::get('/categories', function () {
         echo $cartegory->pivot->post_id.' - ';
         echo $cartegory->pivot->status.'</br>';
     };
+});
+
+Route::get('/phone', function () {
+    $phone = UsersModel::find(7)->phone;
+    dd($phone);
 });
