@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Mechanics;
 use App\Models\Country;
@@ -110,8 +111,32 @@ Route::prefix('demo')->group(function(){
     });
 
     Route::get('/comments', function () {
-       $post = PostModel::has('comments','>=', 2)->get();
-       dd($post);
+        // DB::enableQueryLog();
+        // $post = PostModel::whereHas('comments', function($query){
+        //         $query->whereNotNull('image');
+        // })->get();
+        
+        // $post = PostModel::doesntHave('comments')->get();
+
+        // $post = PostModel::whereDoesntHave('comments', function($query){
+        //     $query->whereNull('image');
+        // })->get();
+
+        // $post = PostModel::withCount('comments')->get();
+        // foreach($post as $item){
+        //     echo $item->title.' - '.$item->comments_count.'</br>';
+        // }
+
+        // $post = PostModel::withCount(['comments','votes' => function($query){
+        //     $query->where('value','>', 4);
+        // }])->get();
+
+        $post = PostModel::withCount(['comments','votes as likes' => function($query){
+            $query->where('value','>', 4);
+        }])->get();
+
+        // dd(DB::getQueryLog());
+        dd($post);
     });
 
 });
