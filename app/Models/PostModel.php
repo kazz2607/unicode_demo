@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Categories;
+
 class PostModel extends Model
 {
     use HasFactory, SoftDeletes;
@@ -32,4 +34,15 @@ class PostModel extends Model
         'content',
         'status'
     ];
+
+    public function categories(){
+        return $this->belongsToMany(
+            Categories::class,
+            'categories_posts',
+            'post_id',
+            'category_id'
+        )
+        ->withPivot('create_at','status')
+        ->wherePivot('status', 1);
+    }
 }

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Models\Mechanics;
 use App\Models\Country;
+use App\Models\Categories;
+use App\Models\PostModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +59,22 @@ Route::get('/owner', function () {
 Route::get('/country', function () {
     $posts = Country::find(2)->posts;
     dd($posts);
+});
+
+Route::get('/posts', function () {
+    $categories = PostModel::find(6)->categories;
+    dd($categories);
+});
+
+Route::get('/categories', function () {
+    //$posts = Categories::find(1)->posts;
+    $categories = PostModel::find(6)->categories;
+    foreach ( $categories as $cartegory){
+        // if (!empty($cartegory->pivot->create_at)){
+        //     echo $cartegory->pivot->create_at.'</br>';
+        // };
+        //dd($cartegory->pivot);
+        echo $cartegory->pivot->post_id.' - ';
+        echo $cartegory->pivot->status.'</br>';
+    };
 });
