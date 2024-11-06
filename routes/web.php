@@ -139,4 +139,29 @@ Route::prefix('demo')->group(function(){
         dd($post);
     });
 
+    Route::get('/eager-load', function () {
+        DB::enableQueryLog();
+        // $users = UsersModel::all(); // Lấy tất cả dữ liệu
+        // $users = UsersModel::with(['group' => function($query){
+        //     $query->where('id',1);
+        // }])->get(); // Tải dữ liệu một lần
+        // foreach ($users as $user){
+        //     if(!empty($user->group->name)){
+        //         echo $user->group->name.'</br>';
+        //     }
+        // }
+
+        $users = UsersModel::all();
+        $users->load('group');
+        foreach ($users as $user){
+            if(!empty($user->group->name)){
+               echo $user->group->name.'</br>';
+            }
+        }
+        // dd($users);
+
+        dd(DB::getQueryLog());
+        
+    });
+
 });
