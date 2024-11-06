@@ -10,4 +10,11 @@ class Comments extends Model
     use HasFactory;
 
     protected $table = 'comments';
+
+    protected $fillable = [
+        'name',
+        'content'
+    ];
+
+    public $timestamps = false;
 }

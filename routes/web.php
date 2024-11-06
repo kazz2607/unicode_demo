@@ -12,6 +12,7 @@ use App\Models\Categories;
 use App\Models\PostModel;
 use App\Models\UsersModel;
 use App\Models\GroupsModel;
+use App\Models\Comments;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,7 +141,7 @@ Route::prefix('demo')->group(function(){
     });
 
     Route::get('/eager-load', function () {
-        DB::enableQueryLog();
+        // DB::enableQueryLog();
         // $users = UsersModel::all(); // Lấy tất cả dữ liệu
         // $users = UsersModel::with(['group' => function($query){
         //     $query->where('id',1);
@@ -159,9 +160,46 @@ Route::prefix('demo')->group(function(){
             }
         }
         // dd($users);
-
-        dd(DB::getQueryLog());
-        
+        // dd(DB::getQueryLog());
     });
 
+    Route::get('/save-comment', function () {
+        $post = PostModel::find(6);
+
+        // $comment = new Comments([
+        //     'name' => 'Văn Quân',
+        //     'content' => 'Comment 5'
+        // ]);
+        // $post->comments()->save($comment);
+        
+        $post->comments()->saveMany([
+            new Comments([
+                'name' => 'Văn Quân Update',
+                'content' => 'Comments 7'
+            ]),
+            new Comments([
+                'name' => 'Văn Quân Update',
+                'content' => 'Comments 8'
+            ]),
+            new Comments([
+                'name' => 'Văn Quân Update',
+                'content' => 'Comments 9'
+            ]),
+            new Comments([
+                'name' => 'Văn Quân Update',
+                'content' => 'Comments 10'
+            ]),
+        ]);
+
+        // dd($post);
+    });
+
+    Route::get('/create-comment', function () {
+        $post = PostModel::find(6);
+        $post->comments()->create([
+            'name' => 'Văn Toàn',
+            'content' => 'Comments 11'
+        ]);
+
+    });
 });

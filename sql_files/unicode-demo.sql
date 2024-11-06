@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 05, 2024 at 11:01 PM
+-- Generation Time: Nov 06, 2024 at 09:30 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -108,7 +108,13 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `name`, `content`, `image`, `post_id`) VALUES
 (1, 'Nguyễn Tuấn', 'Comments 1', '/uploads/images/image01.jpg', 6),
 (2, 'Hoàng Nam', 'Comments 2', NULL, 6),
-(3, 'Văn A', 'Comments 3', NULL, 8);
+(3, 'Văn A', 'Comments 3', NULL, 8),
+(4, 'Văn Quân', 'Comments 5', NULL, 6),
+(5, 'Văn Quân Update', 'Comments 7', NULL, 6),
+(6, 'Văn Quân Update', 'Comments 8', NULL, 6),
+(7, 'Văn Quân Update', 'Comments 9', NULL, 6),
+(8, 'Văn Quân Update', 'Comments 10', NULL, 6),
+(9, 'Văn Toàn', 'Comments 11', NULL, 6);
 
 -- --------------------------------------------------------
 
@@ -400,7 +406,7 @@ ALTER TABLE `categories_posts`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `country`
