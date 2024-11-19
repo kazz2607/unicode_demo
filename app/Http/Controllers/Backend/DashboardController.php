@@ -17,8 +17,6 @@ class DashboardController extends Controller
 
         // Thẻ meta
         $meta['title'] ='Trang quản trị';
-        $meta['description'] ='Mô tả trang quản trị';
-        $meta['image'] ='';
         // Return View 
         return view('backend.dashboard.index', compact('meta'));
     }
