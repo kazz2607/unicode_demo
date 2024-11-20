@@ -37,7 +37,7 @@
                                 <option value="0" selected>Chọn nhóm người dùng</option>
                                 @if (!empty($groups))
                                     @foreach ($groups as $item)
-                                        <option value="{{ $item->id }}" {{ $user->group_id == $item->id ? 'selected':false}}  >{{ $item->name }}</option>
+                                        <option value="{{ $item->id }}" {{ $user->group_id == $item->id ? 'selected':false}} >{{ $item->name }}</option>
                                     @endforeach
                                 @endif
                             </select>
