@@ -4,7 +4,7 @@
 <div class="card">
     <div class="card-header">{{ $meta['title'] }}</div>
     <div class="card-body">
-        <form ethod="POST" action="{{ route('users.store') }}">
+        <form method="POST" action="{{ route('users.store') }}">
             @csrf
             <div class="row">
                 <div class="col-9">
