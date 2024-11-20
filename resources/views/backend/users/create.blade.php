@@ -62,11 +62,11 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="status" value="1" {{old('status') == '1' ? 'checked':'checked'}}>
                                 <label class="form-check-label">Kích hoạt</label>
-                              </div>
-                              <div class="form-check form-check-inline">
+                            </div>
+                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="status" value="0" {{old('status') == '0' ? 'checked':false}}>
                                 <label class="form-check-label">Chưa kích hoạt</label>
-                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
